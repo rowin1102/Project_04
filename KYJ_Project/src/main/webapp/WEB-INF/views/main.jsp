@@ -10,6 +10,7 @@
 	<h2>스프링 부트 프로젝트</h2>
 	<ul>
 		<li><a href="/">루트</a></li>
+		<li><a href="/regist.do">회원가입</a></li>
 	</ul>
 </body>
 </html>

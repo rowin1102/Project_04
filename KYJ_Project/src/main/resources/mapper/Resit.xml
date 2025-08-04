@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pro.springboot.jdbc.IRegistService">
+	
+	<insert id="insert">
+		INSERT INTO (member_idx, user_id, password, email, domain, phone, nickname, member_auth, point)
+		VALUES
+		(seq_member_num.nextval, #{user_id}, #{password}, #{email}, #{domain}, #{phone}, #{nickname}
+		'user', 0)
+	</insert>
+	
+</mapper>

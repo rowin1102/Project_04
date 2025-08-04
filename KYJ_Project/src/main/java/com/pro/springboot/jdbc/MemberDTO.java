@@ -1,0 +1,19 @@
+package com.pro.springboot.jdbc;
+
+import lombok.Data;
+
+@Data
+public class MemberDTO {
+	
+	private int member_idx;
+	private String user_id;
+	private String password;
+	private String email;
+	private String domain;
+	private String phone;
+	private int point;
+	private String nickname;
+	private java.sql.Date postdate;
+	private String member_auth;
+	
+}
