@@ -11,6 +11,14 @@
 	<ul>
 		<li><a href="/">루트</a></li>
 		<li><a href="/regist.do">회원가입</a></li>
+		<li><a href="/myLogin.do">로그인</a></li>
+	</ul>
+	
+	<h2>Login</h2>
+	<ul>
+		<li><a href="/guest/index.do">Guest</a></li>
+		<li><a href="/member/index.do">Member</a></li>
+		<li><a href="/admin/index.do">Admin</a></li>
 	</ul>
 </body>
 </html>

@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email" required></td>
+                <td><input type="text" name="email" required></td>
             </tr>
             <tr>
                 <td>도메인</td>

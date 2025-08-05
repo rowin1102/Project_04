@@ -11,9 +11,9 @@ public class MemberDTO {
 	private String email;
 	private String domain;
 	private String phone;
-	private int point;
 	private String nickname;
 	private java.sql.Date postdate;
 	private String member_auth;
+	private int point;
 	
 }

@@ -13,10 +13,10 @@
 		만약 개발자가 변경하고 싶다면 시큐리티 설정파일에서 커스텀하면 된다. -->
 	<ul>
 		<li><a href="/myLogin.do">Custom Login</a></li>
-		<!-- <li><a href="/guest/index.do">Guest</a></li>
+		<li><a href="/guest/index.do">Guest</a></li>
 		<li><a href="/member/index.do">Member</a></li>
 		<li><a href="/admin/index.do">Admin</a></li>
-		<li><a href="/myLogout.do">Custom Logout</a></li> -->
+		<li><a href="/myLogout.do">Custom Logout</a></li>
 	</ul>
 </body>
 </html>
