@@ -5,9 +5,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import jakarta.servlet.DispatcherType;
@@ -18,19 +18,13 @@ public class WebSecurityConfig {
 	@Autowired
 	public MyAuthFailureHandler myAuthFailureHandler;
 	
-	@Autowired
-	private DataSource dataSource;
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
-	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
 			.cors(csrf -> csrf.disable())
 			.authorizeHttpRequests(request -> request
 					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-					.requestMatchers("/", "/regist.do").permitAll()
+					.requestMatchers("/", "/regist.do", "/checkDuplicate.do", "/checkNicknameDuplicate.do").permitAll()
 					.requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
 					.requestMatchers("/guest/**").permitAll()
 					.requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
@@ -41,7 +35,7 @@ public class WebSecurityConfig {
 		http.formLogin(formLogin -> formLogin
 				.loginPage("/myLogin.do")
 				.loginProcessingUrl("/myLoginAction.do")
-	//			.failureUrl("/myError.do")
+				.defaultSuccessUrl("/", true)
 				.failureHandler(myAuthFailureHandler)
 				.usernameParameter("my_id")
 				.passwordParameter("my_pass")
@@ -61,14 +55,12 @@ public class WebSecurityConfig {
 		
 	}
 	
-	@Autowired
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-			.dataSource(dataSource)
-			.usersByUsernameQuery("select user_id, password, 1 as enabled from member where user_id = ?")
-			.authoritiesByUsernameQuery("select user_id, member_auth from member where user_id = ?")
-			.passwordEncoder(passwordEncoder);
-	}
-	
+	@Bean
+    UserDetailsService userDetailsService(DataSource dataSource) {
+        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
+        manager.setUsersByUsernameQuery("select user_id, password, 1 as enabled from member where user_id = ?");
+        manager.setAuthoritiesByUsernameQuery("select user_id, member_auth from member where user_id = ?");
+        return manager;
+    }
 }
 

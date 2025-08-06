@@ -19,4 +19,11 @@ public class MemberService {
 		
 		iRegistService.insert(memberDTO);
 	}
+	
+	public int checkDuplicateId(String userId) {
+	    return iRegistService.checkDuplicateId(userId);
+	}
+	public int checkDuplicateNickname(String nickname) {
+		return iRegistService.checkDuplicateNickname(nickname);
+	}
 }

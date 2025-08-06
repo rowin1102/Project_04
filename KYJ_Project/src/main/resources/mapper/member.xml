@@ -18,4 +18,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM member WHERE user_id = #{userId} AND password = #{password}
 	</select>
 	
+	<select id="checkDuplicateId" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM member WHERE user_id = #{userId}
+    </select>
+	
+	<select id="checkDuplicateNickname" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM member WHERE nickname = #{nickname}
+    </select>
+    
 </mapper>
