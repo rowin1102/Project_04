@@ -18,13 +18,14 @@ public class MyAuthFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse res, AuthenticationException exp)
 	        throws IOException, ServletException {
-
-	    String errorCode = "1";
+	    
+		String errorCode = "1";
 	    if (exp instanceof InternalAuthenticationServiceException) {
 	        errorCode = "2";
 	    }
-	    
+
 	    res.sendRedirect(req.getContextPath() + "/myLogin.do?error=" + errorCode);
+		
 	}
 	
 	public void loginFailureCnt(String username) {
